@@ -166,7 +166,7 @@ INDEX_HTML = """<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Artisan 天氣橋接 — 位置設定</title>
+<title>烘豆環境天氣 — 地區設定</title>
 <style>
   :root { color-scheme: light dark; }
   body { font: 15px/1.5 system-ui, "Microsoft JhengHei", sans-serif;
@@ -187,8 +187,8 @@ INDEX_HTML = """<!doctype html>
 </style>
 </head>
 <body>
-  <h1>Artisan 天氣橋接 — 位置設定</h1>
-  <p class="muted">搜尋城市 → 選取 → 存檔即時生效。Artisan 端 Path 設 <code>artisan</code>、Port 設 <code>8765</code>。</p>
+  <h1>烘豆環境天氣 — 地區設定</h1>
+  <p class="muted">搜尋城市 → 選取,存檔即時生效。這裡設定的地區,是 Trident 透過 mDNS 自動抓取、再送進 Artisan 烘焙屬性的環境資料來源。</p>
 
   <div class="row">
     <input id="q" type="text" placeholder="輸入城市名稱，例如：台北 / Tokyo / Seattle" autofocus>
@@ -212,9 +212,9 @@ async function loadCurrent() {
   if (c && c.latitude !== undefined) {
     const masl = (c.elevation ?? null) !== null ? Math.round(c.elevation) : '未知';
     el.hidden = false;
-    el.innerHTML = `目前位置：<b>${c.name || ''}</b> ${c.admin1 || ''} ${c.country || ''}`
+    el.innerHTML = `目前地區：<b>${c.name || ''}</b> ${c.admin1 || ''} ${c.country || ''}`
       + `<br>經緯度：${c.latitude.toFixed(4)}, ${c.longitude.toFixed(4)}`
-      + `<br>在 Artisan 的 Ambient 分頁填入 MASL：<span class="masl">${masl}</span> 公尺`;
+      + `<br>海拔（MASL）：<span class="masl">${masl}</span> 公尺`;
   } else {
     el.hidden = false;
     el.textContent = '尚未設定位置，請先搜尋並選取。';
