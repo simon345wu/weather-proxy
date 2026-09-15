@@ -1,0 +1,4 @@
+# Runtime state: the selected location, written by the app at run time.
+weather_config.json
+__pycache__/
+*.pyc
